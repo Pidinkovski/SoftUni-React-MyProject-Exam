@@ -1,4 +1,5 @@
 import {Link} from 'react-router';
+import './Header.css';
 export default function Header() {
     return (
         <nav className='header-nav'>
