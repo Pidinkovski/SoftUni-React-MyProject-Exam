@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-  <h1>Hello , SoftUni</h1>
+  <h1 className="font-bold underline">Hello , SoftUni</h1>
     </>
   )
 }
