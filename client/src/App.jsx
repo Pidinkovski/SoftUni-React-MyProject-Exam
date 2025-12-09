@@ -4,6 +4,7 @@ import Footer from "./components/footer/Footer"
 import Header from "./components/header/Header"
 import Home from "./components/home/Home"
 import Catalog from "./components/catalog-ideas/Catalog"
+import Register from "./components/register/Register"
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <Routes>
     <Route path="/" element={<Home />}/>
     <Route path="/ideas" element= {<Catalog />} />
+    <Route path="/register" element= {<Register/>} />
     </Routes>
 
     <Footer/>
