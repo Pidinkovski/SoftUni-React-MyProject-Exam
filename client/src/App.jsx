@@ -6,6 +6,7 @@ import Home from "./components/home/Home"
 import Catalog from "./components/catalog-ideas/Catalog"
 import Register from "./components/register/Register"
 import Login from "./components/login/Login"
+import Create from "./components/create/Create"
 
 
 
@@ -21,6 +22,7 @@ function App() {
     <Route path="/ideas" element= {<Catalog />} />
     <Route path="/register" element= {<Register/>} />
     <Route path="/login" element= {<Login />} />
+    <Route path="/create" element= {<Create />} />
     </Routes>
 
     <Footer/>
