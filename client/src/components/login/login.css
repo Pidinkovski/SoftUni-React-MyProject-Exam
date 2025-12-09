@@ -66,14 +66,14 @@
   box-shadow: 0 4px 10px rgba(18, 90, 163, 0.4);
 }
 
-.login-redirect-link{
-    display: block;
-    margin-top: 16px;
-    text-align: center;
-    font-size: 14px;
-    color: #0e1318;
+.login-redirect-link {
+  display: block;
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #0e1318;
 }
 
 .login-redirect-link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
