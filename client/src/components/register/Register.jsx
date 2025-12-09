@@ -7,12 +7,12 @@ export default function Register() {
                 <h2 className="register-title">Create your account</h2>
 
                 <form className="register-form" action="">
-                    <div className="form-group">
+                    <div className="register-form-item">
                         <label className="form-label" htmlFor="email">
                             Email
                         </label>
                         <input
-                            className="form-input"
+                            className="register-form-input"
                             type="email"
                             id="email"
                             name="email"
@@ -21,12 +21,12 @@ export default function Register() {
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label className="form-label" htmlFor="password">
+                    <div className="register-form-item">
+                        <label className="register-form-label" htmlFor="password">
                             Password
                         </label>
                         <input
-                            className="form-input"
+                            className="register-form-input"
                             type="password"
                             id="password"
                             name="password"
@@ -34,12 +34,12 @@ export default function Register() {
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label className="form-label" htmlFor="repass">
+                    <div className="register-form-item">
+                        <label className="register-form-label" htmlFor="repass">
                             Repeat password
                         </label>
                         <input
-                            className="form-input"
+                            className="register-form-input"
                             type="password"
                             id="repass"
                             name="rePass"
@@ -51,7 +51,7 @@ export default function Register() {
                         Register
                     </button>
                 </form>
-                <NavLink to="/login" className="redirect-link">
+                <NavLink to="/login" className="register-redirect-link">
                     Already registered? Login here.
                 </NavLink>
             </div>

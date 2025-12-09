@@ -1,4 +1,4 @@
-.register-page {
+.login-page {
   min-height: calc(100vh - 160px);
   display: flex;
   justify-content: center;
@@ -6,7 +6,7 @@
   padding: 24px 16px;
 }
 
-.register-card {
+.login-card {
   width: 100%;
   max-width: 420px;
   padding: 24px 24px 28px;
@@ -15,43 +15,43 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.register-title {
+.login-title {
   text-align: center;
   margin-bottom: 24px;
   font-size: 24px;
   font-weight: 600;
 }
 
-.register-form {
+.login-form {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.register-form-item {
+.login-form-item {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.register-form-label {
+.login-form-label {
   font-size: 14px;
 }
 
-.register-form-input {
+.login-form-input {
   padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 14px;
 }
 
-.register-form-input:focus {
+.login-form-input:focus {
   outline: none;
   border-color: #1976d2;
   box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
 }
 
-.register-btn {
+.login-btn {
   width: 100%;
   margin-top: 8px;
   background-color: #595d60;
@@ -60,13 +60,13 @@
     box-shadow 0.1s ease;
 }
 
-.register-btn:hover {
+.login-btn:hover {
   background-color: #171d1d;
   transform: translateY(-1px);
   box-shadow: 0 4px 10px rgba(18, 90, 163, 0.4);
 }
 
-.register-redirect-link{
+.login-redirect-link{
     display: block;
     margin-top: 16px;
     text-align: center;
@@ -74,6 +74,6 @@
     color: #0e1318;
 }
 
-.register-redirect-link:hover {
+.login-redirect-link:hover {
     text-decoration: underline;
 }
