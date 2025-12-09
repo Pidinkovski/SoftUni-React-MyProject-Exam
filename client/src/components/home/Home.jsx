@@ -11,8 +11,11 @@ export default function Home() {
                 <p>Here you can find ideas about simple or advance workouts, lifestyle tips , how to stay healty and some delicious food recipies</p>
                 <p>Also if you have something helpfull in mind , you can always share with us.</p>
             </div>
-            <div>
-                <p>Here you can find also the most liked ideas</p>
+            <div className="home-popular">
+                <p className='home-popular-title'>Here you can find also the most liked ideas : </p>
+                <ul className="home-popular-list">
+                    <li className="home-popular-item">Top 10 High Protein Meals</li>
+                </ul>
             </div>
         </section>
     )

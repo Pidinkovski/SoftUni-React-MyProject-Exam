@@ -1,14 +1,14 @@
-import {Link} from 'react-router';
+import {NavLink} from 'react-router';
 import './Header.css';
 export default function Header() {
     return (
         <nav className='header-nav'>
-            <Link to="/">Home</Link>
-            <Link to="/ideas">Catalog</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
-            <Link to="/Logout">Logout</Link>
-            <Link to="/create">Create</Link>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/ideas">Catalog</NavLink>
+            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/register">Register</NavLink>
+            <NavLink to="/Logout">Logout</NavLink>
+            <NavLink to="/create">Create</NavLink>
         </nav>
     )
 }

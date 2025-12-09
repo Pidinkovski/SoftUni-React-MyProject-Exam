@@ -7,3 +7,8 @@
     border-top: 5px solid #ccc;
     background-color: #f4f4f4;
 }   
+
+.header-nav a.active {
+  font-weight: 700;
+  text-decoration: underline;
+}
