@@ -18,7 +18,7 @@ const categories = [
         imageUrl: '/images/healthyFood.jpg',
          shortInfo : 'You will find easy,health and simple recipies to try at home , and to adjust to your diet.'
     },
-    { categoryType: 'mindfull',
+    { categoryType: 'mindful',
          categoryAbout: 'Mindful Set',
          imageUrl: '/images/mindfulSet.png',
          shortInfo : 'You will find tips , about how to create a better connect between mind and body , how to meditate , how to do manifistations etc...' },
