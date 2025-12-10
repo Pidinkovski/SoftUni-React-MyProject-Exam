@@ -1,4 +1,4 @@
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import './categoryIdeasList.css'
 const categories = {
     'workout' : {
@@ -60,10 +60,7 @@ export default function CategoryIdeasList() {
     console.log(categories[categoryName]);
     
     const curerentCategory = categories[categoryName]
-    
-    
-    
-    
+    const navigate = useNavigate()
     
     return (
         <section className="category-ideas">
@@ -84,7 +81,7 @@ export default function CategoryIdeasList() {
                     <li
                      key={idea._id} 
                      className="category-idea-card"
-                     onClick={() => console.log('details page fore idea' + idea._id)}
+                     onClick={() => navigate(`/ideas/${categoryName}/${idea._id}`)}
                      >
                         <div className="idea-image-wrapper">
                             <img

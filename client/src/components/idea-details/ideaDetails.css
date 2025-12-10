@@ -1,0 +1,103 @@
+.idea-details-page {
+    min-height: calc(100vh - 160px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 32px 16px;
+}
+
+.idea-details-card {
+    width: 100%;
+    max-width: 900px;
+    background-color: #fff;
+    border-radius: 14px;
+    padding: 24px 28px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.idea-details-header {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+}
+
+.idea-details-title {
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+.idea-details-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 14px;
+    color: #555;
+}
+
+.idea-owner strong {
+    font-weight: 600;
+}
+
+.idea-likes {
+    margin-left: auto;
+    font-weight: 600;
+}
+
+.idea-details-body {
+    margin-bottom: 20px;
+}
+
+.idea-section-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.idea-description {
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.idea-details-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 12px;
+}
+
+.idea-actions-left,
+.idea-actions-right {
+    display: flex;
+    gap: 10px;
+}
+
+.like-btn {
+    background-color: #ff0000;
+    color: #000;
+}
+
+.like-btn:hover {
+    background-color: #5cc50c;
+}
+
+.edit-btn {
+    background-color: #0f1011;
+    color: #fff;
+}
+
+.edit-btn:hover {
+    background-color: #1dd421;
+}
+
+.delete-btn {
+    background-color: #0b0101;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background-color: #d20b0b;
+}

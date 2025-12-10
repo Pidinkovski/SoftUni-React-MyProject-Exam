@@ -8,6 +8,7 @@ import Register from "./components/register/Register"
 import Login from "./components/login/Login"
 import Create from "./components/create/Create"
 import CategoryIdeasList from "./components/category-ideas-list/CategoryIdeasList"
+import IdeaDetails from "./components/idea-details/IdeaDetails"
 
 
 
@@ -25,6 +26,7 @@ function App() {
     <Route path="/login" element= {<Login />} />
     <Route path="/create" element= {<Create />} />
     <Route path="/ideas/:categoryName" element= {<CategoryIdeasList />} />
+    <Route path="/ideas/:categoryName/:ideaId" element= {<IdeaDetails />} />
     </Routes>
 
     <Footer/>
