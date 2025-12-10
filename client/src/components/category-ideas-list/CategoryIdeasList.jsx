@@ -1,31 +1,31 @@
 import { useParams } from "react-router"
 import './categoryIdeasList.css'
-const categories = [
-    {
+const categories = {
+    'workout' : {
         categoryType: 'workout',
         categoryAbout: 'Workout',
         imageUrl: '/images/categoryWorkout.jpg',
         shortInfo: 'Effective and fast workouts to do at home.There will be as for all levels beginners to advance.'
     },
-    {
+    'lifestyle' : {
         categoryType: 'lifestyle',
         categoryAbout: 'Lifestyle',
         imageUrl: '/images/healthyLifeStyle.jpg',
         shortInfo: 'Here you can find what you can change in dayli routines and habits , to feel better.'
     },
-    {
+    'food' : {
         categoryType: 'food',
         categoryAbout: 'Food',
         imageUrl: '/images/healthyFood.jpg',
         shortInfo: 'You will find easy,health and simple recipies to try at home , and to adjust to your diet.'
     },
-    {
-        categoryType: 'mindfull',
+    'mindful' : {
+        categoryType: 'mindful',
         categoryAbout: 'Mindful Set',
         imageUrl: '/images/mindfulSet.png',
         shortInfo: 'You will find tips , about how to create a better connect between mind and body , how to meditate , how to do manifistations etc...'
     },
-]
+}
 
 const ideasInCategory = [
     {
@@ -56,7 +56,15 @@ const ideasInCategory = [
 
 export default function CategoryIdeasList() {
 
-    const { categoryName } = useParams()
+    const { categoryName } = useParams()    
+    console.log(categories[categoryName]);
+    
+    const curerentCategory = categories[categoryName]
+    
+    
+    
+    
+    
     return (
         <section className="category-ideas">
             <nav>
@@ -66,8 +74,8 @@ export default function CategoryIdeasList() {
             </nav>
             <div>
                 <header className="category-ideas-header">
-                    <h2>{categoryName}</h2>
-                    <p>{categoryName}</p>
+                    <h2>{curerentCategory?.categoryAbout}</h2>
+                    <p>{curerentCategory?.shortInfo}</p>
                 </header>
             </div>
 
