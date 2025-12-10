@@ -15,12 +15,16 @@ export default function CategoryIdeasList() {
     const { categories } = useContext(UserContext)
     const curerentCategory = categories[categoryName]
 
+
     let {
         currentData,
         setCurrentData
     } = useFetchOnMount(`${BASE_URL}/data/ideas`, [])
+    console.log(currentData);
 
     currentData = currentData.filter(idea => idea.category === categoryName)
+    console.log(currentData);
+    
 
     return (
         <section className="category-ideas">

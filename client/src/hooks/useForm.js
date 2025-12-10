@@ -5,6 +5,7 @@ export default function useForm(callback , initialValues) {
     const [data , setData] = useState(initialValues);
 
     const dataSetterHandler = (e) => {
+        
         setData(state => ({
             ...state,
             [e.target.name] : e.target.value
