@@ -9,6 +9,8 @@ import Login from "./components/login/Login"
 import Create from "./components/create/Create"
 import CategoryIdeasList from "./components/category-ideas-list/CategoryIdeasList"
 import IdeaDetails from "./components/idea-details/IdeaDetails"
+import { UserProvider } from "./contexts/UserContext"
+import Logout from "./components/logout/Logout"
 
 
 
@@ -16,7 +18,7 @@ function App() {
 
 
   return (
-    <>
+    <UserProvider>
     <Header />
 
     <Routes>
@@ -27,10 +29,11 @@ function App() {
     <Route path="/create" element= {<Create />} />
     <Route path="/ideas/:categoryName" element= {<CategoryIdeasList />} />
     <Route path="/ideas/:categoryName/:ideaId" element= {<IdeaDetails />} />
+    <Route path="/logout" element= {<Logout />} />
     </Routes>
 
     <Footer/>
-    </>
+    </UserProvider>
   )
 }
 

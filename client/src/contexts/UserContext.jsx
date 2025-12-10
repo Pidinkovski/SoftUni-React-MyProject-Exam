@@ -60,8 +60,6 @@ export function UserProvider({
         }catch (err) {
             alert(err.message)
         }
-
-       
     }
 
     async function onLoginHandler({ email, password }) {
