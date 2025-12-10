@@ -22,13 +22,13 @@ export function UserProvider({
 
     const [user, setUser] = useState(() => {
         const currentUser = localStorage.getItem('auth')
-        if(!currentUser) {
+        if (!currentUser) {
             return null
         }
-        
+
         try {
             return JSON.parse(currentUser)
-        }catch {
+        } catch {
             return null
         }
     })
@@ -36,14 +36,14 @@ export function UserProvider({
     const setUserData = (user) => {
         if (user) {
             const userToSet = {
-                email : user.email,
-                accessToken : user.accessToken,
-                _id : user._id,
-                _createdOn : user._createdOn
+                email: user.email,
+                accessToken: user.accessToken,
+                _id: user._id,
+                _createdOn: user._createdOn
             }
             localStorage.setItem('auth', JSON.stringify(userToSet))
             setUser(userToSet)
-            
+
         } else {
             localStorage.removeItem('auth')
         }
@@ -57,23 +57,25 @@ export function UserProvider({
         try {
             const result = await request('http://localhost:3030/users/register', 'POST', newUser)
             setUserData(result)
-        }catch (err) {
+        } catch (err) {
             alert(err.message)
         }
     }
 
     async function onLoginHandler({ email, password }) {
-        try{
+        try {
             const result = await request('http://localhost:3030/users/login', 'POST', { email, password })
+
             setUserData(result)
+            return result
+            
         } catch (err) {
-            alert(err.message)
+            throw err
         }
-        
     }
 
     async function onLogout() {
-        await request('http://localhost:3030/users/logout', 'GET', null , {accessToken : user.accessToken})
+        await request('http://localhost:3030/users/logout', 'GET', null, { accessToken: user.accessToken })
         localStorage.removeItem('auth')
         setUser(null)
     }

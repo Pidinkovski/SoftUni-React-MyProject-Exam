@@ -10,19 +10,19 @@ export default function Login() {
     const navigate = useNavigate()
     const { onLoginHandler } = useContext(UserContext)
 
-    const loginActionClick = ({email , password}) => {
+    const loginActionClick =  async({email , password}) => {
         if(!email || !password){
             alert('All fields are required')
             return
         }
-        console.log(email , password);
         
         try {
-            onLoginHandler({ email, password })
-            navigate('/')
+             await onLoginHandler({ email, password })
+            
         } catch (err) {
-            alert('Invalid name or password' , err.message)
+            return alert('Invalid name or password')
         }
+            navigate('/')
     }
     const {
         data,

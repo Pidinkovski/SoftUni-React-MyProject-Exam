@@ -25,8 +25,8 @@ export default function Register() {
             onRegisterHandler({ email, password })
             navigate('/')
         } catch (err) {
-
             alert(err.message)
+            return
         }
     }
 
