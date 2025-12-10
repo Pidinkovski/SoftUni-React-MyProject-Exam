@@ -7,6 +7,7 @@ import Catalog from "./components/catalog-ideas/Catalog"
 import Register from "./components/register/Register"
 import Login from "./components/login/Login"
 import Create from "./components/create/Create"
+import CategoryIdeasList from "./components/category-ideas-list/CategoryIdeasList"
 
 
 
@@ -23,6 +24,7 @@ function App() {
     <Route path="/register" element= {<Register/>} />
     <Route path="/login" element= {<Login />} />
     <Route path="/create" element= {<Create />} />
+    <Route path="/ideas/:categoryName" element= {<CategoryIdeasList />} />
     </Routes>
 
     <Footer/>

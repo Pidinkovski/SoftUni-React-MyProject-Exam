@@ -1,0 +1,90 @@
+.category-ideas {
+  padding: 24px 16px 32px;
+}
+
+.category-ideas-header {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+
+.category-ideas-header h2 {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.category-ideas-header p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.category-ideas-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.category-idea-card {
+  flex: 0 1 240px;
+}
+
+.idea-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.idea-image {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.idea-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  padding: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.idea-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.idea-short {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.idea-image-wrapper:hover .idea-overlay {
+  opacity: 1;
+}
+
+.idea-image-wrapper:hover .idea-image {
+  transform: scale(1.05);
+}
+
+.back-nav:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
