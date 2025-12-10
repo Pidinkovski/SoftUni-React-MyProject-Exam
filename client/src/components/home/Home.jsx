@@ -1,5 +1,17 @@
+import useFetchOnMount from '../../hooks/useFetchOnMount'
 import './home.css'
+
+const BASE_URL = 'http://localhost:3030'
+
 export default function Home() {
+
+    const {currentData} = useFetchOnMount(`${BASE_URL}/data/ideas`, [])
+    console.log(currentData);
+    
+     currentData.sort((a,b) => b.likes.length - a.likes.length || b.title.localeCompare(a.title))
+    const popularIdeas = currentData.slice(0,3)
+
+    
     return (
         <section className="home">
             <div className="home-header-title">
@@ -14,9 +26,11 @@ export default function Home() {
             <div className="home-popular">
                 <p className='home-popular-title'>Here you can find also the most liked ideas : </p>
                 <ul className="home-popular-list">
-                    <li className="home-popular-item">Top 10 High Protein Meals</li>
-                    <li className="home-popular-item">Top 10 High Protein Meals</li>
-                    <li className="home-popular-item">Top 10 High Protein Meals</li>
+                    {popularIdeas.map( idea => <li key={idea._id} className="home-popular-item">
+                        <h3 className='home-popular-idea-title'>{idea.title}</h3>
+                        <p className='home-popular-idea-likes'>Likes : {idea.likes.length}</p>
+                        </li>)}
+                    
                 </ul>
             </div>
         </section>

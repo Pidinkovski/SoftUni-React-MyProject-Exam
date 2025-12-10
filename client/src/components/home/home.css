@@ -19,7 +19,7 @@
 }
 
 .home-popular-list {
-    
+
     list-style: none;
     margin: 0;
     padding: 0;
@@ -29,21 +29,40 @@
 }
 
 .home-popular-item {
-    text-align: center;
-    width: 100%;
-    padding: 16px;
-    background-color: #f4f4f4;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    transition: 0.2s ease;
+    position: relative;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 12px;
+    background: #f1f1f1;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
 }
 
+
 .home-popular-item:hover {
-  background-color: #eaeaea;
-  border-color: #999;
-  cursor: pointer;
+    transform: scale(1.03);
+}
+
+.home-popular-idea-likes {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+
+    font-size: 26px;
+    font-weight: bold;
+
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+    backdrop-filter: blur(2px);
+}
+
+.home-popular-item:hover .home-popular-idea-likes {
+    opacity: 1;
 }
 
 .home-center-text {
