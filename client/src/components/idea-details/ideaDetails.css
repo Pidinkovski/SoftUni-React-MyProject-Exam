@@ -81,16 +81,16 @@
 }
 
 .like-btn:hover {
-    background-color: #5cc50c;
+    background-color: #c50c0c;
 }
 
 .edit-btn {
-    background-color: #0f1011;
+    background-color: #1976d2;
     color: #fff;
 }
 
 .edit-btn:hover {
-    background-color: #1dd421;
+    background-color: #8d9e37;
 }
 
 .delete-btn {

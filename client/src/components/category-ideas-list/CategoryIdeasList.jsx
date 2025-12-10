@@ -20,12 +20,9 @@ export default function CategoryIdeasList() {
         currentData,
         setCurrentData
     } = useFetchOnMount(`${BASE_URL}/data/ideas`, [])
-    console.log(currentData);
 
     currentData = currentData.filter(idea => idea.category === categoryName)
-    console.log(currentData);
     
-
     return (
         <section className="category-ideas">
             <nav>

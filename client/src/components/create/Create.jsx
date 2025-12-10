@@ -1,6 +1,7 @@
 import './create.css';
 import {useContext } from 'react';
 import { useNavigate } from 'react-router';
+
 import UserContext from '../../contexts/UserContext';
 import useForm from '../../hooks/useForm';
 import useRequest from '../../hooks/useRequest';
@@ -30,7 +31,11 @@ export default function Create() {
             return
         } 
         try {
-           const resp = await request(`${BASE_URL}/data/ideas`, 'POST', {...data} , {accessToken : user.accessToken})
+           const newData = {
+                ...data,
+                likes : []
+            }
+           const resp = await request(`${BASE_URL}/data/ideas`, 'POST', {...newData  } , {accessToken : user.accessToken})
            navigate(`/ideas/${data.category}`)
         }catch(err) {
             alert(err.message)

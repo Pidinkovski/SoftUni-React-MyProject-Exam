@@ -1,47 +1,58 @@
+import { useNavigate, useParams } from 'react-router'
+import useFetchOnMount from '../../hooks/useFetchOnMount'
 import './ideaDetails.css'
+import { useContext } from 'react'
+import UserContext from '../../contexts/UserContext'
+
+const BASE_URL = 'http://localhost:3030'
 
 export default function IdeaDetails() {
+
+    const {user} = useContext(UserContext)
+    const searchPart = encodeURIComponent('author=_ownerId:users')
+    const navigate = useNavigate()
+    const {categoryName , ideaId} = useParams()
+    
+    const {currentData} = useFetchOnMount(`${BASE_URL}/data/ideas/${ideaId}?load=${searchPart}`, { author: {} , likes: []})
+
     return (
         <section className="idea-details-page">
             <div className="idea-details-card">
                 <nav>
                     <ul className="back-nav">
-                        <li className="back-btn" onClick={() => console.log('back to previous page')}>← Back</li>
+                        <li className="back-btn" onClick={() =>navigate(`/ideas/${categoryName}`)}>← Back</li>
                     </ul>
                 </nav>
                 <header className="idea-details-header">
-                    <h2 className="idea-details-title">Idea title here</h2>
+                    <h2 className="idea-details-title">{currentData?.title}</h2>
 
                     <div className="idea-details-meta">
                         <span className="idea-owner">
-                            by <strong>Owners name</strong>
+                            by <strong>{currentData.author?.email}</strong>
                         </span>
 
                         <span className="idea-likes">
-                            Like <span>count of likes</span> likes
+                            Likes : <span>{currentData.likes?.length}</span>
                         </span>
                     </div>
                 </header>
 
                 <div className="idea-details-body">
                     <h3 className="idea-section-title">Description</h3>
-                    <p className="idea-description">wrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegq
-                        wrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegq
-                        wrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegqwrjegjqwegkwqgkqjegq
-                    </p>
+                    <p className="idea-description">{currentData?.description}</p>
                 </div>
 
+                {currentData.author?.email !== user.email && (
                 <footer className="idea-details-footer">
                     <div className="idea-actions-left">
                         <button className="btn like-btn">Like</button>
                     </div>
-
+                
                     <div className="idea-actions-right">
                         <button className="btn edit-btn">Edit</button>
                         <button className="btn delete-btn">Delete</button>
                     </div>
-
-                </footer>
+                </footer>)}
             </div>
         </section>
     )
