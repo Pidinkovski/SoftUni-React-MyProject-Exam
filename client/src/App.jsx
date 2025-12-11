@@ -11,6 +11,7 @@ import CategoryIdeasList from "./components/category-ideas-list/CategoryIdeasLis
 import IdeaDetails from "./components/idea-details/IdeaDetails"
 import { UserProvider } from "./contexts/UserContext"
 import Logout from "./components/logout/Logout"
+import IdeaEdit from "./components/idea-edit/IdeaEdit"
 
 
 
@@ -30,6 +31,7 @@ function App() {
     <Route path="/ideas/:categoryName" element= {<CategoryIdeasList />} />
     <Route path="/ideas/:categoryName/:ideaId" element= {<IdeaDetails />} />
     <Route path="/logout" element= {<Logout />} />
+    <Route path="/ideas/:categoryName/:ideaId/edit" element= {<IdeaEdit />} />
     </Routes>
 
     <Footer/>

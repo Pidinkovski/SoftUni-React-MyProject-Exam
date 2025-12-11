@@ -8,12 +8,14 @@ const BASE_URL = 'http://localhost:3030'
 
 export default function IdeaDetails() {
 
-    const {user} = useContext(UserContext)
+    const {user ,isAuthenticated} = useContext(UserContext)
     const searchPart = encodeURIComponent('author=_ownerId:users')
     const navigate = useNavigate()
     const {categoryName , ideaId} = useParams()
     
     const {currentData} = useFetchOnMount(`${BASE_URL}/data/ideas/${ideaId}?load=${searchPart}`, { author: {} , likes: []})
+
+    
 
     return (
         <section className="idea-details-page">
@@ -42,17 +44,20 @@ export default function IdeaDetails() {
                     <p className="idea-description">{currentData?.description}</p>
                 </div>
 
-                {currentData.author?.email !== user.email && (
+                
                 <footer className="idea-details-footer">
+                    {isAuthenticated && user?.email !== currentData.author?.email &&
                     <div className="idea-actions-left">
                         <button className="btn like-btn">Like</button>
-                    </div>
-                
+                    </div>}
+                    
+                    {isAuthenticated && user?.email === currentData.author?.email &&
                     <div className="idea-actions-right">
-                        <button className="btn edit-btn">Edit</button>
+                        <button className="btn edit-btn" onClick={() => navigate(`/ideas/${categoryName}/${ideaId}/edit`)}>Edit</button>
                         <button className="btn delete-btn">Delete</button>
                     </div>
-                </footer>)}
+                    }
+                </footer>
             </div>
         </section>
     )
