@@ -14,7 +14,7 @@ export default function useLikes(ideaId) {
     const [isLiked, setIsLiked] = useState(false);
 
     useEffect(() => {
-        if (!ideaId || !userId) return;
+        if(!ideaId) return
 
         const where = encodeURIComponent(`ideaId="${ideaId}"`);
         const url = `${BASE_URL}/data/likes?where=${where}`;

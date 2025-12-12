@@ -16,7 +16,7 @@ export default function IdeaDetails() {
     const { categoryName, ideaId } = useParams()
     const userId = user?._id
     const {likesCount , isLiked , like} = useLikes(ideaId ,userId)
-
+    
     const { currentData } = useFetchOnMount(`${BASE_URL}/data/ideas/${ideaId}?load=${searchPart}`, { author: {}, likes: [] });
 
     return (
