@@ -17,12 +17,12 @@ export default function Login() {
         }
         
         try {
-             await onLoginHandler({ email, password })
+             const res = await onLoginHandler({ email, password })
             
         } catch (err) {
             return alert('Invalid name or password')
         }
-            navigate('/')
+        navigate('/')
     }
     const {
         data,

@@ -84,8 +84,9 @@ export function UserProvider({
         try {
             const result = await request('http://localhost:3030/users/register', 'POST', newUser)
             setUserData(result)
+            return result
         } catch (err) {
-            alert(err.message)
+            throw err
         }
     }
 

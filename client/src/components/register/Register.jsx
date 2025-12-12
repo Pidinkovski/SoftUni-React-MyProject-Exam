@@ -9,7 +9,7 @@ export default function Register() {
     const {onRegisterHandler } = useContext(UserContext)
     const navigate = useNavigate()
 
-    const registerClickAction = ({ email, password, rePass }) => {
+    const registerClickAction = async({ email, password, rePass }) => {
 
         if (!email || !password || !rePass) {
             alert('All fields are required')
@@ -22,12 +22,12 @@ export default function Register() {
         }
 
         try {
-            onRegisterHandler({ email, password })
-            navigate('/')
+             await onRegisterHandler({ email, password })
         } catch (err) {
             alert(err.message)
             return
         }
+         navigate('/')
     }
 
     const {
