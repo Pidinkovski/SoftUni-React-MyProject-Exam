@@ -4,8 +4,6 @@ export default function useRequest() {
 
     const  request = async(url, method = 'GET', data ,config = {} ) =>{
         
-        
-        
         const options = {
             method,
             headers: {}

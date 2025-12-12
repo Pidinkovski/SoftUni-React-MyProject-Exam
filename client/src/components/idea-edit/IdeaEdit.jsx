@@ -1,10 +1,11 @@
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import './ideaEdit.css'
 import useFetchOnMount from '../../hooks/useFetchOnMount'
 import useForm from '../../hooks/useForm'
 import { useEffect } from 'react'
 import { useContext } from 'react'
 import UserContext from '../../contexts/UserContext'
+import useRequest from '../../hooks/useRequest'
 
 const BASE_URL = 'http://localhost:3030'
 
@@ -19,7 +20,9 @@ const initialValues = {
 export default function IdeaEdit() {
 
     const {categoryName , ideaId} = useParams()
-    const {categories} = useContext(UserContext)
+    const {categories , user} = useContext(UserContext)
+    const {request} = useRequest()
+    const navigate = useNavigate()
     const allCategories = Object.values(categories)
     const {currentData} = useFetchOnMount(`${BASE_URL}/data/ideas/${ideaId}`, {
         title: '',
@@ -29,9 +32,26 @@ export default function IdeaEdit() {
         category: ''
         })
 
-    const onEditHandler = (allData) => {
-        console.log(allData);
-        
+    const onEditHandler = async(allData) => {
+        if(!allData.title || !allData.category || !allData.conciseContent || !allData.description || !allData.imageUrl) {
+            return alert('All field are required')
+        }
+
+        if(allData.description.length < 30) {
+            return alert('The description must be at least 30 characters long')
+        }
+
+        if(allData.conciseContent.length < 10 || allData.conciseContent.length > 30) {
+            return alert('The concise text should be between 10 and 30 characters long')
+        }
+
+        try {
+            await request(`${BASE_URL}/data/ideas/${ideaId}` , 'PATCH' , {...allData} , {accessToken : user.accessToken});
+            navigate(`/ideas/${categoryName}/${ideaId}/details`)
+        }catch (err) {
+            return alert('Could not made the reqest' , err.message)
+        }
+            
     }
     const {data,
         dataSetterHandler ,

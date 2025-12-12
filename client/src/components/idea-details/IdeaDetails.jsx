@@ -3,26 +3,28 @@ import useFetchOnMount from '../../hooks/useFetchOnMount'
 import './ideaDetails.css'
 import { useContext } from 'react'
 import UserContext from '../../contexts/UserContext'
+import useLikes from '../../hooks/useLikeHook'
+
 
 const BASE_URL = 'http://localhost:3030'
 
 export default function IdeaDetails() {
 
-    const {user ,isAuthenticated} = useContext(UserContext)
+    const { user, isAuthenticated } = useContext(UserContext)
     const searchPart = encodeURIComponent('author=_ownerId:users')
     const navigate = useNavigate()
-    const {categoryName , ideaId} = useParams()
-    
-    const {currentData} = useFetchOnMount(`${BASE_URL}/data/ideas/${ideaId}?load=${searchPart}`, { author: {} , likes: []})
+    const { categoryName, ideaId } = useParams()
+    const userId = user?._id
+    const {likesCount , isLiked , like} = useLikes(ideaId ,userId)
 
-    
+    const { currentData } = useFetchOnMount(`${BASE_URL}/data/ideas/${ideaId}?load=${searchPart}`, { author: {}, likes: [] });
 
     return (
         <section className="idea-details-page">
             <div className="idea-details-card">
                 <nav>
                     <ul className="back-nav">
-                        <li className="back-btn" onClick={() =>navigate(`/ideas/${categoryName}`)}>← Back</li>
+                        <li className="back-btn" onClick={() => navigate(`/ideas/${categoryName}`)}>← Back</li>
                     </ul>
                 </nav>
                 <header className="idea-details-header">
@@ -34,7 +36,7 @@ export default function IdeaDetails() {
                         </span>
 
                         <span className="idea-likes">
-                            Likes : <span>{currentData.likes?.length}</span>
+                            Likes : <span>{likesCount}</span>
                         </span>
                     </div>
                 </header>
@@ -44,18 +46,22 @@ export default function IdeaDetails() {
                     <p className="idea-description">{currentData?.description}</p>
                 </div>
 
-                
+
                 <footer className="idea-details-footer">
                     {isAuthenticated && user?.email !== currentData.author?.email &&
-                    <div className="idea-actions-left">
-                        <button className="btn like-btn">Like</button>
-                    </div>}
-                    
+                        <div className="idea-actions-left">
+                            <button
+                             className={`like-btn ${isLiked ? 'liked' : ''}`}
+                              onClick={like}
+                              disabled={isLiked}
+                              >Like</button>
+                        </div>}
+
                     {isAuthenticated && user?.email === currentData.author?.email &&
-                    <div className="idea-actions-right">
-                        <button className="btn edit-btn" onClick={() => navigate(`/ideas/${categoryName}/${ideaId}/edit`)}>Edit</button>
-                        <button className="btn delete-btn">Delete</button>
-                    </div>
+                        <div className="idea-actions-right">
+                            <button className="btn edit-btn" onClick={() => navigate(`/ideas/${categoryName}/${ideaId}/edit`)}>Edit</button>
+                            <button className="btn delete-btn">Delete</button>
+                        </div>
                     }
                 </footer>
             </div>

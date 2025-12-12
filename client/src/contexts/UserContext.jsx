@@ -4,7 +4,6 @@ import useRequest from "../hooks/useRequest"
 const UserContext = createContext({
     user: {
         email: "",
-        password: "",
         _createdOn: 0,
         _id: "",
         accessToken: ""

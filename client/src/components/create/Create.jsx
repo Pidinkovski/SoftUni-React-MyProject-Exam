@@ -31,11 +31,7 @@ export default function Create() {
             return
         } 
         try {
-           const newData = {
-                ...data,
-                likes : []
-            }
-           const resp = await request(`${BASE_URL}/data/ideas`, 'POST', {...newData  } , {accessToken : user.accessToken})
+           const resp = await request(`${BASE_URL}/data/ideas`, 'POST', {...data  } , {accessToken : user.accessToken})
            navigate(`/ideas/${data.category}`)
         }catch(err) {
             alert(err.message)
