@@ -12,8 +12,8 @@ const UserContext = createContext({
     isAuthenticated: false,
     onRegisterHandler() { },
     onLoginHandler() { },
-    onLogout() { }
-
+    onLogout() { },
+    isPending : false
 })
 
 const categories = {
@@ -76,7 +76,7 @@ export function UserProvider({
         }
 
     }
-    const { request } = useRequest()
+    const { request , isPending} = useRequest()
 
     async function onRegisterHandler({ email, password }) {
 
@@ -120,7 +120,8 @@ export function UserProvider({
         onLoginHandler,
         onLogout,
         isAuthenticated: !!user?.accessToken,
-        categories
+        categories,
+        isPending
     }
 
     return (

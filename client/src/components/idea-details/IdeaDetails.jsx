@@ -4,6 +4,7 @@ import './ideaDetails.css'
 import { useContext } from 'react'
 import UserContext from '../../contexts/UserContext'
 import useLikes from '../../hooks/useLikeHook'
+import Loading from '../loading/Loading'
 
 
 const BASE_URL = 'http://localhost:3030'
@@ -15,9 +16,13 @@ export default function IdeaDetails() {
     const navigate = useNavigate()
     const { ideaId } = useParams()
     const userId = user?._id
-    const {likesCount , isLiked , like} = useLikes(ideaId ,userId)
+    const {likesCount , isLiked , like ,isPending} = useLikes(ideaId ,userId)
     
-    const { currentData } = useFetchOnMount(`${BASE_URL}/data/ideas/${ideaId}?load=${searchPart}`, { author: {}, likes: [] });
+    const { currentData ,isLoading } = useFetchOnMount(`${BASE_URL}/data/ideas/${ideaId}?load=${searchPart}`, { author: {}, likes: [] });
+
+    if(isLoading) {
+        return <Loading />
+    }
 
     return (
         <section className="idea-details-page">
@@ -53,7 +58,8 @@ export default function IdeaDetails() {
                             <button
                              className={`like-btn ${isLiked ? 'liked' : ''}`}
                               onClick={like}
-                              disabled={isLiked}
+                              disabled={isPending || isLiked}
+                              
                               >Like</button>
                         </div>}
 

@@ -1,6 +1,6 @@
 import "./login.css"
 import { NavLink, useNavigate } from "react-router";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import useForm from "../../hooks/useForm";
 import UserContext from "../../contexts/UserContext";
@@ -8,6 +8,7 @@ import UserContext from "../../contexts/UserContext";
 export default function Login() {
 
     const navigate = useNavigate()
+    const [isSending , setIsSending] = useState(false)
     const { onLoginHandler } = useContext(UserContext)
 
     const loginActionClick =  async({email , password}) => {
@@ -17,10 +18,14 @@ export default function Login() {
         }
         
         try {
-             const res = await onLoginHandler({ email, password })
+            setIsSending(true)
+            await onLoginHandler({ email, password })
             
         } catch (err) {
             return alert('Invalid name or password')
+        }
+        finally {
+            setIsSending(false)
         }
         navigate('/')
     }
@@ -67,8 +72,8 @@ export default function Login() {
                             value={data.password}
                         />
                     </div>
-                    <button type="submit" className="btn login-btn">
-                        login
+                    <button type="submit" disabled={isSending} className="btn login-btn">
+                        {isSending ? 'Loggin in' : 'Login'}
                     </button>
                 </form>
                 <NavLink to="/register" className="login-redirect-link">

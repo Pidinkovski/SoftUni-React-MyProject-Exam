@@ -2,13 +2,14 @@ import './home.css'
 
 import useFetchOnMount from '../../hooks/useFetchOnMount';
 import { useNavigate } from 'react-router';
+import Loading from '../loading/Loading';
 
 const BASE_URL = 'http://localhost:3030'
 
 export default function Home() {
 
   const searchPart = encodeURIComponent('idea=ideaId:ideas')
-  const { currentData } = useFetchOnMount(`${BASE_URL}/data/likes?load=${searchPart}`, [])
+  const { currentData ,isLoading } = useFetchOnMount(`${BASE_URL}/data/likes?load=${searchPart}`, [])
   const navigate = useNavigate()
 
   function getIdeasCount(likes) {
@@ -33,6 +34,10 @@ export default function Home() {
   }
 
   const populizedIdeas = getIdeasCount(currentData);
+
+  if(isLoading){
+    return <Loading/>;
+  }
 
   return (
     <section className="home">

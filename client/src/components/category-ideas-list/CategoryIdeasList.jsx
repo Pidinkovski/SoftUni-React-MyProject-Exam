@@ -3,6 +3,7 @@ import './categoryIdeasList.css'
 import { useContext } from "react"
 import UserContext from "../../contexts/UserContext"
 import useFetchOnMount from "../../hooks/useFetchOnMount"
+import Loading from "../loading/Loading"
 
 const BASE_URL = 'http://localhost:3030'
 
@@ -18,11 +19,14 @@ export default function CategoryIdeasList() {
 
     let {
         currentData,
-        setCurrentData
+        isLoading
     } = useFetchOnMount(`${BASE_URL}/data/ideas`, [])
 
     currentData = currentData.filter(idea => idea.category === categoryName)
-    
+
+    if(isLoading) {
+        return <Loading />;
+    }
     return (
         <section className="category-ideas">
             <nav>

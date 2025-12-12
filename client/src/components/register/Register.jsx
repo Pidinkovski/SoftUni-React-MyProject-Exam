@@ -1,6 +1,6 @@
 import "./register.css"
 import { NavLink, useNavigate } from "react-router";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import UserContext from "../../contexts/UserContext";;
 import useForm from "../../hooks/useForm";
@@ -8,7 +8,7 @@ import useForm from "../../hooks/useForm";
 export default function Register() {
     const {onRegisterHandler } = useContext(UserContext)
     const navigate = useNavigate()
-
+    const [isSending , setIsSending] = useState(false)
     const registerClickAction = async({ email, password, rePass }) => {
 
         if (!email || !password || !rePass) {
@@ -22,10 +22,15 @@ export default function Register() {
         }
 
         try {
+            setIsSending(true)
+
              await onRegisterHandler({ email, password })
+
         } catch (err) {
             alert(err.message)
             return
+        } finally {
+            setIsSending(false)
         }
          navigate('/')
     }
@@ -90,8 +95,8 @@ export default function Register() {
                         />
                     </div>
 
-                    <button type="submit" className="btn register-btn">
-                        Register
+                    <button type="submit" disabled={isSending} className="btn register-btn">
+                        {isSending ? 'Registering' : 'Register'}
                     </button>
                 </form>
                 <NavLink to="/login" className="register-redirect-link">

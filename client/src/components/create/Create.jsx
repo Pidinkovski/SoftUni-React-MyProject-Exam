@@ -12,7 +12,7 @@ export default function Create() {
 
     const { user , categories } = useContext(UserContext)
     const allCategories = Object.values(categories)
-    const { request } = useRequest()
+    const { request , isPending} = useRequest()
     const navigate = useNavigate()
 
     const onSubmitHandler = async() => {
@@ -123,8 +123,8 @@ export default function Create() {
                         </select>
                     </div>
 
-                    <button type="submit" className="btn create-btn">
-                        Create Idea
+                    <button type="submit" disabled={isPending} className="btn create-btn">
+                        {isPending ? 'Creating ' : 'Create Idea'}
                     </button>
 
                 </form>

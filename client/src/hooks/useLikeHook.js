@@ -12,15 +12,17 @@ export default function useLikes(ideaId) {
 
     const [likesCount, setLikesCount] = useState(0);
     const [isLiked, setIsLiked] = useState(false);
+    const [isPending , setIsPending] = useState(false)
 
     useEffect(() => {
         if(!ideaId) return
-
+        setIsPending(true)
         const where = encodeURIComponent(`ideaId="${ideaId}"`);
         const url = `${BASE_URL}/data/likes?where=${where}`;
 
         (async () => {
             try {
+                
                 const likes = await request(url);
                 setLikesCount(likes.length)
 
@@ -33,12 +35,15 @@ export default function useLikes(ideaId) {
                 }
             } catch (err) {
                 console.error('Error loading likes', err);
+            } finally {
+                setIsPending(false)
             }
         })();
 
     }, [ideaId, userId , setIsLiked]);
 
     const like = useCallback(async () => {
+        setIsPending(true)
 
         try {
 
@@ -52,12 +57,15 @@ export default function useLikes(ideaId) {
             console.error('Error adding like', err);
             alert(err.message || 'Could not like this idea.');
 
+        }finally {
+            setIsPending(false)
         }
     }, [ideaId, userId, isLiked]);
 
     return {
         likesCount,
         isLiked,
-        like
+        like,
+        isPending
     };
 }

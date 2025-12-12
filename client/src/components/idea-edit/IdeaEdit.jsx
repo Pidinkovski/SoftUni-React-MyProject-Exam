@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { useContext } from 'react'
 import UserContext from '../../contexts/UserContext'
 import useRequest from '../../hooks/useRequest'
+import Loading from '../loading/Loading'
 
 const BASE_URL = 'http://localhost:3030'
 
@@ -24,7 +25,7 @@ export default function IdeaEdit() {
     const {request} = useRequest()
     const navigate = useNavigate()
     const allCategories = Object.values(categories)
-    const {currentData} = useFetchOnMount(`${BASE_URL}/data/ideas/${ideaId}`, {
+    const {currentData , isLoading} = useFetchOnMount(`${BASE_URL}/data/ideas/${ideaId}`, {
         title: '',
         imageUrl: '',
         description: '',
@@ -70,6 +71,10 @@ export default function IdeaEdit() {
             })
         }
     } , [currentData])
+
+    if(isLoading) {
+        return <Loading/>
+    }
 
         
 
