@@ -1,15 +1,38 @@
-import { useContext, useEffect } from "react"
-import { Navigate } from "react-router"
-import UserContext from "../../contexts/UserContext"
+import { useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router";
+import UserContext from "../../contexts/UserContext";
+
 
 export default function Logout() {
-    const {user , onLogout} = useContext(UserContext)
+    const { user, onLogout } = useContext(UserContext);
+    const [isLogginOut, setIsLoggingOut] = useState(false)
 
     useEffect(() => {
-        onLogout({accessToken : user.accessToken})
-    },[])
-    
+        (async () => {
+            try {
+
+                await onLogout({ accessToken: user.accessToken })
+
+            } catch (err) {
+
+                console.error(err)
+
+            } finally {
+
+                setIsLoggingOut(true)
+
+            }
+        })();
+    }, []);
+
+    if (isLogginOut) {
+        return <Navigate to="/login" />;
+    }
+
     return (
-        <Navigate to="/" />
+        <div className="text-center">
+            <h2 className="text-2xl font-bold">Logging out…</h2>
+            <p className="text-gray-600">Please wait</p>
+        </div>
     )
 }

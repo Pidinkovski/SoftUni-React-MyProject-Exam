@@ -6,10 +6,10 @@ import UserContext from "../../contexts/UserContext";;
 import useForm from "../../hooks/useForm";
 
 export default function Register() {
-    const {onRegisterHandler } = useContext(UserContext)
+    const { onRegisterHandler } = useContext(UserContext)
     const navigate = useNavigate()
-    const [isSending , setIsSending] = useState(false)
-    const registerClickAction = async({ email, password, rePass }) => {
+    const [isSending, setIsSending] = useState(false)
+    const registerClickAction = async ({ email, password, rePass }) => {
 
         if (!email || !password || !rePass) {
             alert('All fields are required')
@@ -24,15 +24,14 @@ export default function Register() {
         try {
             setIsSending(true)
 
-             await onRegisterHandler({ email, password })
-
+            await onRegisterHandler({ email, password })
+            navigate('/')
         } catch (err) {
             alert(err.message)
             return
         } finally {
             setIsSending(false)
         }
-         navigate('/')
     }
 
     const {
