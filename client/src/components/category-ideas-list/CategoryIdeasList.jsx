@@ -48,7 +48,7 @@ export default function CategoryIdeasList() {
                     <li
                         key={idea._id}
                         className="category-idea-card"
-                        onClick={() => navigate(`/ideas/${categoryName}/${idea._id}/details`)}
+                        onClick={() => navigate(`/ideas/${idea._id}/details`)}
                     >
                         <div className="idea-image-wrapper">
                             <img

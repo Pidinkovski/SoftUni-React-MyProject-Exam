@@ -19,7 +19,7 @@ const initialValues = {
 
 export default function IdeaEdit() {
 
-    const {categoryName , ideaId} = useParams()
+    const {ideaId} = useParams()
     const {categories , user} = useContext(UserContext)
     const {request} = useRequest()
     const navigate = useNavigate()
@@ -47,7 +47,7 @@ export default function IdeaEdit() {
 
         try {
             await request(`${BASE_URL}/data/ideas/${ideaId}` , 'PATCH' , {...allData} , {accessToken : user.accessToken});
-            navigate(`/ideas/${categoryName}/${ideaId}/details`)
+            navigate(`/ideas/${ideaId}/details`)
         }catch (err) {
             return alert('Could not made the reqest' , err.message)
         }

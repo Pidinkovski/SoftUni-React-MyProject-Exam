@@ -13,7 +13,7 @@ export default function IdeaDetails() {
     const { user, isAuthenticated } = useContext(UserContext)
     const searchPart = encodeURIComponent('author=_ownerId:users')
     const navigate = useNavigate()
-    const { categoryName, ideaId } = useParams()
+    const { ideaId } = useParams()
     const userId = user?._id
     const {likesCount , isLiked , like} = useLikes(ideaId ,userId)
     
@@ -24,7 +24,7 @@ export default function IdeaDetails() {
             <div className="idea-details-card">
                 <nav>
                     <ul className="back-nav">
-                        <li className="back-btn" onClick={() => navigate(`/ideas/${categoryName}`)}>← Back</li>
+                        <li className="back-btn" onClick={() => navigate(`/ideas/${currentData.category}`)}>← Back</li>
                     </ul>
                 </nav>
                 <header className="idea-details-header">
@@ -59,7 +59,7 @@ export default function IdeaDetails() {
 
                     {isAuthenticated && user?.email === currentData.author?.email &&
                         <div className="idea-actions-right">
-                            <button className="btn edit-btn" onClick={() => navigate(`/ideas/${categoryName}/${ideaId}/edit`)}>Edit</button>
+                            <button className="btn edit-btn" onClick={() => navigate(`/ideas/${currentData.category}/${ideaId}/edit`)}>Edit</button>
                             <button className="btn delete-btn">Delete</button>
                         </div>
                     }

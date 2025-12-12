@@ -1,16 +1,18 @@
 import './home.css'
 
 import useFetchOnMount from '../../hooks/useFetchOnMount';
+import { useNavigate } from 'react-router';
 
 const BASE_URL = 'http://localhost:3030'
 
 export default function Home() {
 
   const searchPart = encodeURIComponent('idea=ideaId:ideas')
-
   const { currentData } = useFetchOnMount(`${BASE_URL}/data/likes?load=${searchPart}`, [])
+  const navigate = useNavigate()
 
   function getIdeasCount(likes) {
+
     const ideasWithProps = new Map()
 
     for (const like of likes) {
@@ -46,7 +48,11 @@ export default function Home() {
       <div className="home-popular">
         <p className='home-popular-title'>Here you can find also the most liked ideas : </p>
         <ul className="home-popular-list">
-          {populizedIdeas?.map(idea => <li key={idea?.ideaId} className="home-popular-item">
+          {populizedIdeas?.map(idea => <li 
+          key={idea?.ideaId} 
+          className="home-popular-item"
+          onClick={() => navigate(`/ideas/${idea.ideaId}/details`)}
+          >
             <h3 className='home-popular-idea-title'>{idea?.title}</h3>
             <p className='home-popular-idea-likes'>Likes : {idea.count}</p>
           </li>)}

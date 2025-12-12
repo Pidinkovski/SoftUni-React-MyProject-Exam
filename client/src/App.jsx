@@ -29,7 +29,7 @@ function App() {
     <Route path="/login" element= {<Login />} />
     <Route path="/create" element= {<Create />} />
     <Route path="/ideas/:categoryName" element= {<CategoryIdeasList />} />
-    <Route path="/ideas/:categoryName/:ideaId/details" element= {<IdeaDetails />} />
+    <Route path="/ideas/:ideaId/details" element= {<IdeaDetails />} />
     <Route path="/logout" element= {<Logout />} />
     <Route path="/ideas/:categoryName/:ideaId/edit" element= {<IdeaEdit />} />
     </Routes>
