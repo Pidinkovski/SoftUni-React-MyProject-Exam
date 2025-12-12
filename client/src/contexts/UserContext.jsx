@@ -8,7 +8,7 @@ const UserContext = createContext({
         _id: "",
         accessToken: ""
     },
-    categories : [],
+    categories: [],
     isAuthenticated: false,
     onRegisterHandler() { },
     onLoginHandler() { },
@@ -17,25 +17,25 @@ const UserContext = createContext({
 })
 
 const categories = {
-    'workout' : {
+    'workout': {
         categoryType: 'workout',
         categoryAbout: 'Workout',
         imageUrl: '/images/categoryWorkout.jpg',
         shortInfo: 'Effective and fast workouts to do at home.There will be as for all levels beginners to advance.'
     },
-    'lifestyle' : {
+    'lifestyle': {
         categoryType: 'lifestyle',
         categoryAbout: 'Lifestyle',
         imageUrl: '/images/healthyLifeStyle.jpg',
         shortInfo: 'Here you can find what you can change in dayli routines and habits , to feel better.'
     },
-    'food' : {
+    'food': {
         categoryType: 'food',
         categoryAbout: 'Food',
         imageUrl: '/images/healthyFood.jpg',
         shortInfo: 'You will find easy,health and simple recipies to try at home , and to adjust to your diet.'
     },
-    'mindful' : {
+    'mindful': {
         categoryType: 'mindful',
         categoryAbout: 'Mindful Set',
         imageUrl: '/images/mindfulSet.png',
@@ -55,7 +55,7 @@ export function UserProvider({
 
         try {
             return JSON.parse(currentUser)
-        } catch {
+        } catch (err) {
             return null
         }
     })
@@ -102,9 +102,16 @@ export function UserProvider({
     }
 
     async function onLogout() {
-        await request('http://localhost:3030/users/logout', 'GET', null, { accessToken: user.accessToken })
-        localStorage.removeItem('auth')
-        setUser(null)
+        try {
+            await request('http://localhost:3030/users/logout', 'GET', null, { accessToken: user.accessToken })
+            localStorage.removeItem('auth')
+            setUser(null)
+
+        } catch(err) {
+            alert('Invalid token')
+            localStorage.removeItem('auth')
+            setUser(null)
+        }
     }
     const contextValues = {
         user,

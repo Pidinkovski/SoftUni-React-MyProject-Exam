@@ -59,7 +59,7 @@ export default function IdeaDetails() {
 
                     {isAuthenticated && user?.email === currentData.author?.email &&
                         <div className="idea-actions-right">
-                            <button className="btn edit-btn" onClick={() => navigate(`/ideas/${currentData.category}/${ideaId}/edit`)}>Edit</button>
+                            <button className="btn edit-btn" onClick={() => navigate(`/ideas/${ideaId}/edit`)}>Edit</button>
                             <button className="btn delete-btn">Delete</button>
                         </div>
                     }

@@ -12,6 +12,7 @@ import IdeaDetails from "./components/idea-details/IdeaDetails"
 import { UserProvider } from "./contexts/UserContext"
 import Logout from "./components/logout/Logout"
 import IdeaEdit from "./components/idea-edit/IdeaEdit"
+import NotFound from "./components/404/404"
 
 
 
@@ -31,7 +32,8 @@ function App() {
     <Route path="/ideas/:categoryName" element= {<CategoryIdeasList />} />
     <Route path="/ideas/:ideaId/details" element= {<IdeaDetails />} />
     <Route path="/logout" element= {<Logout />} />
-    <Route path="/ideas/:categoryName/:ideaId/edit" element= {<IdeaEdit />} />
+    <Route path="/ideas/:ideaId/edit" element= {<IdeaEdit />} />
+    <Route path="*" element={<NotFound />} />
     </Routes>
 
     <Footer/>
