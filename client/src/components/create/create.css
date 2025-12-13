@@ -77,3 +77,14 @@
   width: 100%;
   border-radius: 10px;
 }
+
+.form-input.input-error {
+  border: 2px solid #ef4444;
+  background-color: #fee2e2;
+}
+
+.error-text {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+}
