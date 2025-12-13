@@ -1,9 +1,10 @@
 import { useNavigate, useParams } from "react-router"
 import './categoryIdeasList.css'
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import UserContext from "../../contexts/UserContext"
 import useFetchOnMount from "../../hooks/useFetchOnMount"
 import Loading from "../loading/Loading"
+import useRequest from "../../hooks/useRequest"
 
 const BASE_URL = 'http://localhost:3030'
 
@@ -13,20 +14,28 @@ export default function CategoryIdeasList() {
     const { categoryName } = useParams()
     const navigate = useNavigate()
 
+    const [page, setPage] = useState(1)
+    const pageSize = 4;
+    const offset = (page - 1) * pageSize
+
     const { categories } = useContext(UserContext)
     const curerentCategory = categories[categoryName]
+    const searchPart = encodeURIComponent(`category="${categoryName}"`)
 
-
+    const { currentData : totalIdeasCount, isLoading: countIsLoading } = useFetchOnMount(`${BASE_URL}/data/ideas?where=${searchPart}`, [categoryName])
+    
+    
     let {
-        currentData,
+        currentData : ideasPaged,
         isLoading
-    } = useFetchOnMount(`${BASE_URL}/data/ideas`, [])
+    } = useFetchOnMount(`${BASE_URL}/data/ideas?where=${searchPart}&offset=${offset}&pageSize=${pageSize}`, [categoryName, page])
+    const totalPages = Math.ceil((Number(totalIdeasCount.length) || 0) / pageSize)
 
-    currentData = currentData.filter(idea => idea.category === categoryName)
-
-    if(isLoading) {
+    if (isLoading || countIsLoading) {
         return <Loading />;
     }
+
+    
     return (
         <section className="category-ideas">
             <nav>
@@ -36,7 +45,7 @@ export default function CategoryIdeasList() {
             </nav>
             <div>
                 <header className="category-ideas-header">
-                    {currentData.length !== 0
+                    {ideasPaged.length !== 0
                         ? (<div>
                             <h2>{curerentCategory?.categoryAbout}</h2>
                             <p>{curerentCategory?.shortInfo}</p>
@@ -48,7 +57,7 @@ export default function CategoryIdeasList() {
             </div>
 
             <ul className="category-ideas-grid">
-                {currentData.map((idea) => (
+                {ideasPaged.map((idea) => (
                     <li
                         key={idea._id}
                         className="category-idea-card"
@@ -71,6 +80,13 @@ export default function CategoryIdeasList() {
                     </li>
                 ))}
             </ul>
+            <div className="pagination">
+                <button disabled={page === 1} 
+                onClick={() => setPage(state => state - 1)}
+                >Prev</button>
+                <span>{page} / {totalPages || 1}</span>
+                <button disabled={page >= totalPages} onClick={() => setPage(state => state + 1)}>Next</button>
+            </div>
 
         </section>
 

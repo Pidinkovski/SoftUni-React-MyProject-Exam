@@ -4,13 +4,15 @@ import useRequest from "./useRequest";
 export default function useFetchOnMount(url, initialValue) {
   const { request } = useRequest();
 
-  const controller = new AbortController()
   const [currentData, setCurrentData] = useState(initialValue)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const fetchData = useCallback(async () => {
-    
+  
+  useEffect(() => {
+     const controller = new AbortController();
+
+    (async () => {
     setIsLoading(true)
     setError(null)
 
@@ -24,16 +26,15 @@ export default function useFetchOnMount(url, initialValue) {
       setError(err)
 
     } finally {
-
-      setIsLoading(false);
-
+      if(!controller.signal.aborted){
+        setIsLoading(false);
+      }
     }
+  })();
+    
     return () => controller.abort()
   }, [url])
 
-  useEffect(() => {
-    fetchData()
-  }, [fetchData])
 
-  return { currentData, setCurrentData, isLoading, error, redoFetch : fetchData };
+  return { currentData, setCurrentData, isLoading, error };
 }

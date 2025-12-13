@@ -13,10 +13,12 @@ export default function useLikes(ideaId) {
     const [likesCount, setLikesCount] = useState(0);
     const [isLiked, setIsLiked] = useState(false);
     const [isPending , setIsPending] = useState(false)
-    const controller = new AbortController()
+
 
     useEffect(() => {
         if(!ideaId) return
+
+        const controller = new AbortController()
         setIsPending(true)
         const where = encodeURIComponent(`ideaId="${ideaId}"`);
         const url = `${BASE_URL}/data/likes?where=${where}`;
@@ -35,13 +37,20 @@ export default function useLikes(ideaId) {
                     setIsLiked(false)
                 }
             } catch (err) {
+                if (err.name === 'AbortError') {
+                    return
+                    }
                 console.error('Error loading likes', err);
             } finally {
-                setIsPending(false)
+                if(!controller.signal.aborted){
+                    setIsPending(false)
+                }
             }
-            return () => controller.abort()
+            
         })();
-
+        return () => {
+            controller.abort()
+        }
     }, [ideaId, userId , setIsLiked]);
 
     const like = useCallback(async () => {
