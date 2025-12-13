@@ -55,7 +55,7 @@ export default function Home() {
         <ul className="home-popular-list">
           {populizedIdeas?.map(idea => <li 
           key={idea?.ideaId} 
-          className="home-popular-item"
+          className="card home-popular-item"
           onClick={() => navigate(`/ideas/${idea.ideaId}/details`)}
           >
             <h3 className='home-popular-idea-title'>{idea?.title}</h3>

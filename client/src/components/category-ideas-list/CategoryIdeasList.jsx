@@ -15,18 +15,18 @@ export default function CategoryIdeasList() {
     const navigate = useNavigate()
 
     const [page, setPage] = useState(1)
-    const pageSize = 4;
+    const pageSize = 3;
     const offset = (page - 1) * pageSize
 
     const { categories } = useContext(UserContext)
     const curerentCategory = categories[categoryName]
     const searchPart = encodeURIComponent(`category="${categoryName}"`)
 
-    const { currentData : totalIdeasCount, isLoading: countIsLoading } = useFetchOnMount(`${BASE_URL}/data/ideas?where=${searchPart}`, [categoryName])
-    
-    
+    const { currentData: totalIdeasCount, isLoading: countIsLoading } = useFetchOnMount(`${BASE_URL}/data/ideas?where=${searchPart}`, [categoryName])
+
+
     let {
-        currentData : ideasPaged,
+        currentData: ideasPaged,
         isLoading
     } = useFetchOnMount(`${BASE_URL}/data/ideas?where=${searchPart}&offset=${offset}&pageSize=${pageSize}`, [categoryName, page])
     const totalPages = Math.ceil((Number(totalIdeasCount.length) || 0) / pageSize)
@@ -35,7 +35,7 @@ export default function CategoryIdeasList() {
         return <Loading />;
     }
 
-    
+
     return (
         <section className="category-ideas">
             <nav>
@@ -80,12 +80,37 @@ export default function CategoryIdeasList() {
                     </li>
                 ))}
             </ul>
-            <div className="pagination">
-                <button disabled={page === 1} 
-                onClick={() => setPage(state => state - 1)}
-                >Prev</button>
-                <span>{page} / {totalPages || 1}</span>
-                <button disabled={page >= totalPages} onClick={() => setPage(state => state + 1)}>Next</button>
+            <div className="pagination  mt-10 flex items-center justify-center gap-6 ">
+                <button
+                    disabled={page === 1}
+                    onClick={() => setPage(state => state - 1)}
+                    className="
+                        flex items-center gap-2
+                        px-4 py-2
+                        text-sm font-medium
+                        bg-white text-gray-700
+                        rounded-lg
+                        shadow-sm
+                        hover:bg-gray-100
+                        disabled:opacity-40
+                        disabled:cursor-not-allowed"
+                >←</button>
+                <span className="px-4 py-2
+                        text-sm font-semibold
+                        text-gray-700
+                        bg-white/70
+                        rounded-lg"
+                >{page} / {totalPages || 1}</span>
+                <button
+                    disabled={page >= totalPages}
+                    onClick={() => setPage(state => state + 1)}
+                     className="
+                        text-sm font-medium
+                        bg-white text-gray-700
+                        hover:bg-gray-100
+                        disabled:opacity-40
+                        disabled:cursor-not-allowed"
+                >→</button>
             </div>
 
         </section>

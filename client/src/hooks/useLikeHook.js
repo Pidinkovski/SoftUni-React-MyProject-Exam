@@ -40,7 +40,7 @@ export default function useLikes(ideaId) {
                 if (err.name === 'AbortError') {
                     return
                     }
-                console.error('Error loading likes', err);
+                throw err('Error loading likes', err);
             } finally {
                 if(!controller.signal.aborted){
                     setIsPending(false)

@@ -15,7 +15,7 @@ export default function Header() {
             {isAuthenticated
                 ? (<>
                     <NavLink to="/create">Create</NavLink>
-                    <NavLink to="/Logout">Logout</NavLink>
+                    <NavLink to="/logout">Logout</NavLink>
                 </>)
                 : (<>
                     <NavLink to="/login">Login</NavLink>

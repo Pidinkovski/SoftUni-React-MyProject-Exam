@@ -81,15 +81,25 @@ export default function Create() {
 
                     <div className="form-item">
                         <label className="form-label" htmlFor="imageUrl">Image URL</label>
+
                         <input
                             className="form-input"
                             id="imageUrl"
-                            type="text"
+                            type="url"
                             name="imageUrl"
                             onChange={dataSetterHandler}
                             value={data.imageUrl}
                         />
-                    </div>
+
+                        {data.imageUrl && (
+                            <img
+                            src={data.imageUrl}
+                            alt="Preview"
+                            className="image-preview"
+                            onError={(e) => (e.currentTarget.style.display = "none")}
+                            />
+                        )}
+                        </div>
 
                     <div className="form-item">
                         <label className="form-label" htmlFor="description">Description</label>
