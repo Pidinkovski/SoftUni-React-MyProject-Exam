@@ -5,6 +5,8 @@ import { useContext } from 'react'
 import UserContext from '../../contexts/UserContext'
 import useLikes from '../../hooks/useLikeHook'
 import Loading from '../loading/Loading'
+import useRequest from '../../hooks/useRequest'
+import { toast } from 'react-toastify'
 
 
 const BASE_URL = 'http://localhost:3030'
@@ -12,6 +14,7 @@ const BASE_URL = 'http://localhost:3030'
 export default function IdeaDetails() {
 
     const { user, isAuthenticated } = useContext(UserContext)
+    const {request , isPending : isDeleting} = useRequest()
     const searchPart = encodeURIComponent('author=_ownerId:users')
     const navigate = useNavigate()
     const { ideaId } = useParams()
@@ -23,6 +26,20 @@ export default function IdeaDetails() {
     if(isLoading) {
         return <Loading />
     }
+
+    const deleteHandler = async(ideaId) => {
+        const result = confirm('Confirm you want to delete this idea');
+
+        if(result) {
+            try {
+                await request(`${BASE_URL}/data/ideas/${ideaId}` , 'DELETE' , null , {accessToken : user.accessToken})
+                navigate(`/ideas/${currentData.category}`)
+            }catch (err) {
+                toast.error('There is a problem with the deleting process')
+            }
+
+        }
+    } 
 
     return (
         <section className="idea-details-page">
@@ -66,7 +83,11 @@ export default function IdeaDetails() {
                     {isAuthenticated && user?.email === currentData.author?.email &&
                         <div className="idea-actions-right">
                             <button className="btn edit-btn" onClick={() => navigate(`/ideas/${ideaId}/edit`)}>Edit</button>
-                            <button className="btn delete-btn">Delete</button>
+                            <button 
+                            disabled={isDeleting}
+                            className="btn delete-btn"
+                            onClick={() =>deleteHandler(ideaId)}
+                            >{isDeleting ? 'Deleting' : 'Delete'}</button>
                         </div>
                     }
                 </footer>
