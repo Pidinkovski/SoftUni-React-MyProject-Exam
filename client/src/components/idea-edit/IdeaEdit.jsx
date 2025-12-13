@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router'
+import { useNavigate, useParams, Navigate } from 'react-router'
 import './ideaEdit.css'
 import useFetchOnMount from '../../hooks/useFetchOnMount'
 import useForm from '../../hooks/useForm'
@@ -22,7 +22,7 @@ const initialValues = {
 export default function IdeaEdit() {
 
     const {ideaId} = useParams()
-    const {categories , user} = useContext(UserContext)
+    const {categories , user , isAuthenticated} = useContext(UserContext)
     const {request} = useRequest()
     const navigate = useNavigate()
     const allCategories = Object.values(categories)
@@ -83,6 +83,14 @@ export default function IdeaEdit() {
 
     if(isLoading) {
         return <Loading/>
+    }
+
+    if(!isAuthenticated) {
+        return <Navigate to='/login' />
+    }
+
+    if (user._id !== currentData._ownerId) {
+        return <Navigate to="/login" />;
     }
 
         
