@@ -13,6 +13,7 @@ export default function useLikes(ideaId) {
     const [likesCount, setLikesCount] = useState(0);
     const [isLiked, setIsLiked] = useState(false);
     const [isPending , setIsPending] = useState(false)
+    const controller = new AbortController()
 
     useEffect(() => {
         if(!ideaId) return
@@ -23,7 +24,7 @@ export default function useLikes(ideaId) {
         (async () => {
             try {
                 
-                const likes = await request(url);
+                const likes = await request(url , 'GET',null , {signal : controller.signal});
                 setLikesCount(likes.length)
 
                 if (userId) {
@@ -38,6 +39,7 @@ export default function useLikes(ideaId) {
             } finally {
                 setIsPending(false)
             }
+            return () => controller.abort()
         })();
 
     }, [ideaId, userId , setIsLiked]);

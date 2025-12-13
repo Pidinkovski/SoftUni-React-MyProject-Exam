@@ -19,8 +19,12 @@ export default function useRequest() {
                     options.body = JSON.stringify(data)
                 }
 
-                if (config.accessToken) {
+                if (config?.accessToken) {
                     options.headers['X-Authorization'] = config.accessToken
+                }
+
+                if(config?.signal) {
+                    options.signal = config.signal
                 }
 
                 const response = await fetch(url, options);
