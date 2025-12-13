@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import UserContext from '../../contexts/UserContext';
 import useForm from '../../hooks/useForm';
 import useRequest from '../../hooks/useRequest';
+import { toast } from 'react-toastify';
 
 const BASE_URL = 'http://localhost:3030'
 
@@ -17,24 +18,32 @@ export default function Create() {
 
     const onSubmitHandler = async() => {
         if(!data.title || !data.imageUrl || !data.description || !data.conciseContent || !data.category) {
-            alert('All fields are required')
+            toast.error('All fields are required', {
+                autoClose : 1500
+            })
             return
         }
 
         if(data.description.length < 30) {
-            alert('Description must be at least 30 characters long')
+            toast.error('Description must be at least 30 characters long', {
+                autoClose : 1500
+            })
             return
         }
 
         if(data.conciseContent.length < 10 || data.conciseContent.length > 50) {
-            alert('Concise content must be between 10 and 50 characters long')
+            toast.error('Concise content must be between 10 and 50 characters long', {
+                autoClose : 1500
+            })
             return
         } 
         try {
            const resp = await request(`${BASE_URL}/data/ideas`, 'POST', {...data  } , {accessToken : user.accessToken})
            navigate(`/ideas/${data.category}`)
         }catch(err) {
-            alert(err.message)
+            toast.error(err.message, {
+                autoClose : 1500
+            })
             return
         }
         

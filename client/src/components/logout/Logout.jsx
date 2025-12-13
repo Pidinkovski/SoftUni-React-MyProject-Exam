@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router";
 import UserContext from "../../contexts/UserContext";
+import { toast } from "react-toastify";
 
 
 export default function Logout() {
@@ -15,7 +16,7 @@ export default function Logout() {
 
             } catch (err) {
 
-                console.error(err)
+                toast.error(err)
 
             } finally {
 

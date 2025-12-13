@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import UserContext from '../../contexts/UserContext'
 import useRequest from '../../hooks/useRequest'
 import Loading from '../loading/Loading'
+import { toast } from 'react-toastify'
 
 const BASE_URL = 'http://localhost:3030'
 
@@ -35,22 +36,30 @@ export default function IdeaEdit() {
 
     const onEditHandler = async(allData) => {
         if(!allData.title || !allData.category || !allData.conciseContent || !allData.description || !allData.imageUrl) {
-            return alert('All field are required')
+            return toast.error('All field are required', {
+                autoClose : 1500
+            })
         }
 
         if(allData.description.length < 30) {
-            return alert('The description must be at least 30 characters long')
+            return toast.error('The description must be at least 30 characters long', {
+                autoClose : 1500
+            })
         }
 
         if(allData.conciseContent.length < 10 || allData.conciseContent.length > 30) {
-            return alert('The concise text should be between 10 and 30 characters long')
+            return toast.error('The concise text should be between 10 and 30 characters long', {
+                autoClose : 1500
+            })
         }
 
         try {
             await request(`${BASE_URL}/data/ideas/${ideaId}` , 'PATCH' , {...allData} , {accessToken : user.accessToken});
             navigate(`/ideas/${ideaId}/details`)
         }catch (err) {
-            return alert('Could not made the reqest' , err.message)
+            return toast.error('Could not made the reqest' ,  {
+                autoClose : 1500
+            })
         }
             
     }

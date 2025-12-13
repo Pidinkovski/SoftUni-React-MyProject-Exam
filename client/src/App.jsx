@@ -15,6 +15,7 @@ import IdeaEdit from "./components/idea-edit/IdeaEdit"
 import NotFound from "./components/404/404"
 import AuthGuard from "./routeGuards/authGuard"
 import GuestGuard from "./routeGuards/guestGuard"
+import {ToastContainer} from 'react-toastify'
 
 
 
@@ -25,6 +26,7 @@ function App() {
     <UserProvider>
     <Header />
 
+    <ToastContainer />
     <Routes>
     <Route path="/" element={<Home />}/>
     <Route path="/ideas" element= {<Catalog />} />

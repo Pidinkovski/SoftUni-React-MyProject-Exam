@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 
 import UserContext from "../../contexts/UserContext";;
 import useForm from "../../hooks/useForm";
+import { toast } from "react-toastify";
 
 export default function Register() {
     const { onRegisterHandler } = useContext(UserContext)
@@ -12,12 +13,16 @@ export default function Register() {
     const registerClickAction = async ({ email, password, rePass }) => {
 
         if (!email || !password || !rePass) {
-            alert('All fields are required')
+            toast.error('All fields are required', {
+                autoClose : 1500
+            })
             return
         }
 
         if (password !== rePass) {
-            alert('Passwords do not match')
+            toast.error('Passwords do not match', {
+                autoClose : 1500
+            })
             return
         }
 
@@ -25,9 +30,14 @@ export default function Register() {
             setIsSending(true)
 
             await onRegisterHandler({ email, password })
+            toast.success('Succsessfull registration' , {
+                autoClose : 1500
+            })
             navigate('/')
         } catch (err) {
-            alert(err.message)
+            toast.error(err.message, {
+                autoClose : 1500
+            })
             return
         } finally {
             setIsSending(false)

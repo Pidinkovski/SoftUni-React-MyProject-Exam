@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 
 import useForm from "../../hooks/useForm";
 import UserContext from "../../contexts/UserContext";
+import { toast } from "react-toastify";
 
 export default function Login() {
 
@@ -13,16 +14,22 @@ export default function Login() {
 
     const loginActionClick =  async({email , password}) => {
         if(!email || !password){
-            alert('All fields are required')
+            toast.error('All fields are required')
             return
         }
         
         try {
             setIsSending(true)
             await onLoginHandler({ email, password })
+            toast.success('Succsessfull login', {
+                autoClose : 1500
+            })
             
         } catch (err) {
-            return alert('Invalid name or password')
+             toast.error('Invalid name or password', {
+                autoClose : 1500
+            })
+            return
         }
         finally {
             setIsSending(false)
