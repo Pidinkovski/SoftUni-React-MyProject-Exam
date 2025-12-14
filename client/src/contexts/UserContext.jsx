@@ -1,5 +1,6 @@
 import { createContext, useState } from "react"
 import useRequest from "../hooks/useRequest"
+import userHasProfile from "../hooks/userHasProfile"
 
 const UserContext = createContext({
     user: {
@@ -114,6 +115,7 @@ export function UserProvider({
             setUser(null)
         }
     }
+            
     const contextValues = {
         user,
         onRegisterHandler,
@@ -121,7 +123,7 @@ export function UserProvider({
         onLogout,
         isAuthenticated: !!user?.accessToken,
         categories,
-        isPending
+        isPending,
     }
 
     return (

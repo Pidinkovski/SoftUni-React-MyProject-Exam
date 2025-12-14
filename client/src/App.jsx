@@ -16,6 +16,8 @@ import NotFound from "./components/404/404"
 import AuthGuard from "./routeGuards/authGuard"
 import GuestGuard from "./routeGuards/guestGuard"
 import {ToastContainer} from 'react-toastify'
+import CreateProfile from "./components/create-profile/CreateProfile"
+import Profile from "./components/profile/Profile"
 
 
 
@@ -40,8 +42,10 @@ function App() {
     <Route path="/ideas/:ideaId/details" element= {<IdeaDetails />} />
 
     <Route element={<AuthGuard />}>
+      <Route path="/update-profile" element={<CreateProfile/>} />
       <Route path="/create" element= {<Create />} />
       <Route path="/logout" element= {<Logout />} />
+      <Route path="/profile/:userId" element= {<Profile/>} />
     </Route >
 
     <Route path="/ideas/:ideaId/edit" element= {<IdeaEdit />} />

@@ -4,7 +4,6 @@ import { useContext, useState } from "react"
 import UserContext from "../../contexts/UserContext"
 import useFetchOnMount from "../../hooks/useFetchOnMount"
 import Loading from "../loading/Loading"
-import useRequest from "../../hooks/useRequest"
 
 const BASE_URL = 'http://localhost:3030'
 
