@@ -6,6 +6,7 @@ export default function userHasProfile(userId) {
 
     const [hasProfile, setHasProfile] = useState(false);
     const [error, setError] = useState(null);
+    const [isLoad , setIsLoad] = useState(false)
 
     useEffect(() => {
         if (!userId) {
@@ -16,6 +17,7 @@ export default function userHasProfile(userId) {
         const controller = new AbortController();
 
         (async () => {
+            setIsLoad(true)
             try {
                 setError(null);
 
@@ -27,11 +29,13 @@ export default function userHasProfile(userId) {
                 if (err?.name === "AbortError") return;
                 setError(err);
                 setHasProfile(false);
+            }finally {
+                setIsLoad(false)
             }
         })();
 
         return () => controller.abort();
     }, [userId]);
 
-    return { hasProfile, error };
+    return { hasProfile, error, isLoad };
 }

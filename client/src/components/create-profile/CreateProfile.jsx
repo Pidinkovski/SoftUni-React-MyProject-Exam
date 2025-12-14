@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import useRequest from '../../hooks/useRequest';
 import { useNavigate } from 'react-router';
 import userHasProfile from '../../hooks/userHasProfile';
+import Loading from '../loading/Loading';
 
 
 const initialValues = {
@@ -25,7 +26,7 @@ export default function CreateProfile() {
 
     const { request, isPending } = useRequest()
     const { user } = useContext(UserContext)
-    const {hasProfile} = userHasProfile(user?._id)
+    const {hasProfile ,isLoad} = userHasProfile(user?._id)
     useEffect(() => {
         if(hasProfile) {
         navigate(`/profile/${user._id}`)
@@ -49,7 +50,9 @@ export default function CreateProfile() {
     }
     const { data, formAction, dataSetterHandler } = useForm(onCreateHandler, initialValues)
 
-
+    if(isLoad) {
+        return <Loading />
+    }
     return (
         <section className="create-page">
             <div className="create-card">
