@@ -49,8 +49,9 @@ export default function CategoryIdeasList() {
                             <h2>{curerentCategory?.categoryAbout}</h2>
                             <p>{curerentCategory?.shortInfo}</p>
                         </div>)
-                        : (<div>
-                            <p >There are no ideas added yet</p>
+                        : (<div className="empty-state">
+                            <h3 className="empty-title">No ideas added yet</h3>
+                            <p className="empty-text">Be the first one to share an idea in this category.</p>
                         </div>)}
                 </header>
             </div>

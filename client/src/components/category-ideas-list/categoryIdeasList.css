@@ -88,3 +88,23 @@
   cursor: pointer;
   text-decoration: underline;
 }
+
+
+.empty-state {
+  text-align: center;
+  margin: 40px 0 24px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+}
+.empty-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.empty-text {
+  font-size: 14px;
+  color: #334155;
+}
