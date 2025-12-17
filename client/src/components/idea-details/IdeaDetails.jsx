@@ -7,6 +7,7 @@ import useLikes from '../../hooks/useLikeHook'
 import Loading from '../loading/Loading'
 import useRequest from '../../hooks/useRequest'
 import { toast } from 'react-toastify'
+import CreateComment from './comments/createComment'
 
 
 const BASE_URL = 'http://localhost:3030'
@@ -14,20 +15,19 @@ const BASE_URL = 'http://localhost:3030'
 export default function IdeaDetails() {
 
     const { user, isAuthenticated } = useContext(UserContext)
+    const userId = user?._id
+    const { ideaId } = useParams()
+
+    const {likesCount , isLiked , like ,isPending} = useLikes(ideaId ,userId)
     const {request , isPending : isDeleting} = useRequest()
     const searchPart = encodeURIComponent('author=_ownerId:users')
     const navigate = useNavigate()
-    const { ideaId } = useParams()
-    const userId = user?._id
-    const {likesCount , isLiked , like ,isPending} = useLikes(ideaId ,userId)
-    
+
     const { currentData ,isLoading } = useFetchOnMount(`${BASE_URL}/data/ideas/${ideaId}?load=${searchPart}`, { author: {}, likes: [] });
 
-    
     if(isLoading) {
         return <Loading />
     }
-
     const deleteHandler = async(ideaId) => {
         const result = confirm('Confirm you want to delete this idea');
 
@@ -53,10 +53,20 @@ export default function IdeaDetails() {
                 <header className="idea-details-header">
                     <h2 className="idea-details-title">{currentData?.title}</h2>
 
-                    <div className="idea-details-meta">
+                    
                         <span className="idea-owner">
                             by <strong>{currentData.author?.email}</strong>
-                        </span>
+                        </span> 
+                        <div className="idea-details-meta">
+                        {isAuthenticated && user?.email !== currentData.author?.email &&
+                        <div className="idea-actions-left">
+                            <button
+                             className={`like-btn ${isLiked ? 'liked' : ''}`}
+                              onClick={like}
+                              disabled={isPending || isLiked}
+                              
+                              >Like</button>
+                        </div>}
 
                         <span className="idea-likes">
                             Likes : <span>{likesCount}</span>
@@ -71,15 +81,6 @@ export default function IdeaDetails() {
 
 
                 <footer className="idea-details-footer">
-                    {isAuthenticated && user?.email !== currentData.author?.email &&
-                        <div className="idea-actions-left">
-                            <button
-                             className={`like-btn ${isLiked ? 'liked' : ''}`}
-                              onClick={like}
-                              disabled={isPending || isLiked}
-                              
-                              >Like</button>
-                        </div>}
 
                     {isAuthenticated && user?.email === currentData.author?.email &&
                         <div className="idea-actions-right">
@@ -92,6 +93,9 @@ export default function IdeaDetails() {
                         </div>
                     }
                 </footer>
+
+                    <CreateComment ideaId = {ideaId}/>
+
             </div>
         </section>
     )

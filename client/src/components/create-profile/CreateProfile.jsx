@@ -14,7 +14,7 @@ const initialValues = {
     username: "",
     profilePicture: "",
     gender: "",
-    Bio: "",
+    bio: "",
     years: "",
     more: "",
 }
@@ -26,9 +26,11 @@ export default function CreateProfile() {
 
     const { request, isPending } = useRequest()
     const { user } = useContext(UserContext)
-    const {hasProfile ,isLoad} = userHasProfile(user?._id)
+    const {hasProfile ,isLoad } = userHasProfile(user?._id)
+
     useEffect(() => {
         if(hasProfile) {
+            
         navigate(`/profile/${user._id}`)
     }},[hasProfile])
     
@@ -99,10 +101,10 @@ export default function CreateProfile() {
                     </div>
 
                     <div className="form-item">
-                        <label className="form-label" htmlFor="Bio">Bio</label>
+                        <label className="form-label" htmlFor="bio">Bio</label>
                         <textarea
                             className="form-input textarea"
-                            id="Bio"
+                            id="bio"
                             name="bio"
                             placeholder='Share a bit personal info'
                             value={data.bio}

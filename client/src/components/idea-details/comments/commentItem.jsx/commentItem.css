@@ -1,0 +1,26 @@
+.comment-item {
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #fff;
+    margin-bottom: 12px;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #333;
+}
+
+.comment-text {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #333;
+    white-space: pre-line;
+}

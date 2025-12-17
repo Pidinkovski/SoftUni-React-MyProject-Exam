@@ -2,12 +2,16 @@ import { NavLink, useNavigate } from 'react-router';
 import './Header.css';
 import { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
+import userHasProfile from '../../hooks/userHasProfile';
+
 
 
 export default function Header() {
 
-    const { isAuthenticated, user  } = useContext(UserContext);
-    const navigate = useNavigate()
+    const { isAuthenticated, user } = useContext(UserContext);
+    const { originalProfile, isLoad } = userHasProfile(user?._id)
+
+
     return (
 
         <nav className="header-nav">
@@ -30,16 +34,15 @@ export default function Header() {
                 )}
             </div>
 
-            
+
             {isAuthenticated && user?.email && (
                 <div className="nav-user">
                     <NavLink to="/update-profile" className="update-profile">
-                         Profile
+                        Profile
                     </NavLink>
 
-                    <span 
-                    className="hello-user">
-                        Hello, {user?.email}
+                    <span className="hello-user">
+                        Hello, {isLoad ? "..." : (originalProfile?.username || user?.email)}
                     </span>
                 </div>
             )}

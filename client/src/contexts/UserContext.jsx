@@ -1,6 +1,5 @@
 import { createContext, useState } from "react"
 import useRequest from "../hooks/useRequest"
-import userHasProfile from "../hooks/userHasProfile"
 
 const UserContext = createContext({
     user: {
@@ -110,7 +109,6 @@ export function UserProvider({
             setUser(null)
 
         } catch(err) {
-            alert('Invalid token')
             localStorage.removeItem('auth')
             setUser(null)
         }
