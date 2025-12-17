@@ -44,6 +44,10 @@ function reducer(state, action) {
                 ...state ,
                 page : state.page - 1
             }
+        case 'DELETE_COMMENT' : 
+            return {...state,
+                comments : state.comments.filter(comment => comment._id !== action.payload)
+            }
         default:
             return state
     }
@@ -124,7 +128,7 @@ export default function CreateComment({ ideaId ,ideaOwner }) {
         return () => {
             contr.abort()
         }
-    }, [ideaId, items.page])
+    }, [ideaId, items.page ])
     const onCreateComment = async (currentComment) => {
         if (currentComment.content.length < 5) {
             return toast.error('The comment should be at least 5 characters', {
@@ -159,6 +163,22 @@ export default function CreateComment({ ideaId ,ideaOwner }) {
             toast.error('There was a problem with the comment creating')
         }
     }
+    const deleteHandler = async(commentId) => {
+        const wannaDelete = confirm('Are you sure you want to delete this comment')
+        if(!wannaDelete) {
+            return
+        }
+        try {
+            await request(`${BASE_URL}/data/comments/${commentId}`, "DELETE", null, {accessToken : user.accessToken});
+            
+            dispatch({
+                type : 'DELETE_COMMENT',
+                payload : commentId
+            })
+        } catch (err) {
+            toast.error('There was a problem with deleting')
+        }
+    }
 
     const { data, dataSetterHandler, formAction } = useForm(onCreateComment, {
         content: "",
@@ -173,7 +193,7 @@ export default function CreateComment({ ideaId ,ideaOwner }) {
             <h3 className="create-comment-title">Comments</h3>
 
             <ul className="comments-list">
-                {items.comments?.map((coment) => <CommentItem key={coment._id} {...coment} />)}
+                {items.comments?.map((coment) => <CommentItem key={coment._id} {...coment} onDelete = {deleteHandler} />)}
             </ul>
              <div className="pagination  mt-10 flex items-center justify-center gap-6 ">
                 <button
