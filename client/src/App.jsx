@@ -18,6 +18,7 @@ import GuestGuard from "./routeGuards/guestGuard"
 import {ToastContainer} from 'react-toastify'
 import CreateProfile from "./components/create-profile/CreateProfile"
 import Profile from "./components/profile/Profile"
+import About from "./components/about/About"
 
 
 
@@ -32,6 +33,7 @@ function App() {
     <Routes>
     <Route path="/" element={<Home />}/>
     <Route path="/ideas" element= {<Catalog />} />
+    <Route path="/about" element={<About />} />
 
     <Route element={<GuestGuard />}>
     <Route path="/register" element= {<Register/>} />
