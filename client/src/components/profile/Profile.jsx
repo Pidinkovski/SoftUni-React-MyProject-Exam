@@ -61,18 +61,18 @@ export default function Profile() {
       </div>
 
       <div className="profile-right">
-        <p className="profile-row"><strong>Email:</strong> <span>{profiler?.email}</span></p>
-        <p className="profile-row"><strong>Username:</strong> <span>{profiler?.username}</span></p>
-        <p className="profile-row"><strong>Gender:</strong> <span>{profiler?.gender}</span></p>
-        <p className="profile-row"><strong>Year:</strong> <span>{profiler?.years}</span></p>
+        <p className="profile-row"><strong>Email :</strong> <span>{profiler?.email}</span></p>
+        <p className="profile-row"><strong>Username :</strong> <span>{profiler?.username}</span></p>
+        <p className="profile-row"><strong>Gender :</strong> <span>{profiler?.gender}</span></p>
+        <p className="profile-row"><strong>Years of experience :</strong> <span>{profiler?.years}</span></p>
 
         <div className="profile-block">
-          <p className="profile-label"><strong>Bio:</strong></p>
+          <p className="profile-label"><strong>Bio :</strong></p>
           <p className="profile-text">{profiler?.bio}</p>
         </div>
 
         <div className="profile-block">
-          <p className="profile-label"><strong>More:</strong></p>
+          <p className="profile-label"><strong>More :</strong></p>
           <p className="profile-text">{profiler?.more}</p>
         </div>
       </div>

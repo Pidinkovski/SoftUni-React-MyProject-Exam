@@ -3,7 +3,7 @@
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 50px;
 }
 
 .home-popular {
@@ -39,33 +39,50 @@
     transition: transform 0.2s ease-in-out;
 }
 
-
-.home-popular-item:hover {
-    transform: scale(1.03);
-}
-
 .home-popular-idea-likes {
     position: absolute;
     inset: 0;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.55);
-    color: white;
 
+    color: white;
     font-size: 26px;
     font-weight: bold;
 
+    background-color: rgb(101, 211, 28);
+
+    transform: scaleY(0);
+    transform-origin: bottom;
     opacity: 0;
-    transition: opacity 0.25s ease-in-out;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.25s ease;
+
     backdrop-filter: blur(2px);
 }
 
 .home-popular-item:hover .home-popular-idea-likes {
+    transform: scaleY(1);
     opacity: 1;
 }
 
 .home-center-text {
     text-align: center;
+    font-size: larger;
+    font-style: italic;
+}
 
+.home-idea-visual {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 8px;
+}
+
+.home-idea-visual img {
+  width: 140px;        
+  opacity: 0.85;        
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.15));
 }

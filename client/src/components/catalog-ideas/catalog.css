@@ -3,12 +3,16 @@
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .catalog-ideas {
-    padding: 20px;
-    text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  text-align: center;
+  background: transparent;
+  backdrop-filter: blur(8px);
 }
 
 .catalog-ideas h2 {
@@ -16,8 +20,9 @@
 }
 
 .catalog-ideas-scroller {
-    overflow-x: auto;
+    overflow-x: scroll;
     padding: 10px 0;
+    background: transparent;
 }
 
 .catalog-ideas-list {
@@ -31,10 +36,11 @@
 }
 
 
+
 .catalog-idea-item {
     flex: 0 0 260px;
-    background-color: #ffffff;
-    border: 2px solid #ccc;
+    background-color: #ae5f10;
+    border: 2px solid #090117;
     border-radius: 12px;
     padding: 12px;
     text-align: center;
@@ -69,4 +75,20 @@
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
+}
+
+.catalog-last-text {
+  background: transparent;
+  margin-top: 15px ;         
+}
+
+.catalog-content-text {
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: large;
+}
+
+.catalog-context-last {
+    margin-bottom: 10px;
+    font-size: large;
 }

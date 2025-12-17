@@ -20,6 +20,7 @@ export default function Header() {
             <div className="nav-links">
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/ideas">Catalog</NavLink>
+                <NavLink to='/about'>About Us</NavLink>
 
                 {isAuthenticated ? (
                     <>

@@ -11,6 +11,9 @@ export default function Catalog() {
     return (
         <section className="catalog-ideas">
             <h2 className="catalog-title">Just choose your category , and enjoy others people have shared and tried</h2>
+            <p className='catalog-content-text'>These are the common categories types  , they are very spacefull and we can talk much in them.</p>
+            <p className='catalog-content-text'>In every tab , you will see what is it about , and what is the context of it.There's always place for as newbies , as advanced users.</p>
+            <p className='catalog-context-last'>So dont worry , be free to read and educate , its always better to ask and learn.</p>
 
             <div className='catalog-ideas-scroller'>
                 <ul className="catalog-ideas-list">
