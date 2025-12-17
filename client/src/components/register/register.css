@@ -77,3 +77,8 @@
 .register-redirect-link:hover {
     text-decoration: underline;
 }
+
+.register-form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(48,212,174,0.25);
+}

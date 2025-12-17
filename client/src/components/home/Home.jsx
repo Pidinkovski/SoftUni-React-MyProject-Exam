@@ -45,11 +45,14 @@ export default function Home() {
         <h1>Welcome to Healty Lifestyle</h1>
       </div>
 
-      <div className='home-center-text'>
+      <div className='home-center-text font-bold'>
         <p>If you want to improve your overall health and lifestyle, you are on the right place.</p>
         <p>Here you can find ideas about simple or advance workouts, lifestyle tips , how to stay healty and some delicious food recipies</p>
         <p>Also if you have something helpfull in mind , you can always share with us.</p>
       </div>
+      <div className="home-idea-visual">
+  <img src="/images/idea.png" alt="Ideas and creativity" />
+</div>
       <div className="home-popular">
         <p className='home-popular-title'>Here you can find also the most liked ideas : </p>
         <ul className="home-popular-list">

@@ -3,19 +3,20 @@ import './about.css';
 export default function About() {
     return (
         <section className="about">
-            <h1>About Us</h1>
+            <h1 className='about-text-header'>More about Us</h1>
 
-            <p>
+            <p className='about-text-header'>
                 We're a community-driven platform for sharing practical ideas in Fitness, Lifestyle and Food.
-                Post your idea, help others, and get inspired.
-                Also if it is easier for you , you can always come to our office , and have discussion with some of our educated people.
+                Post your idea, help others, and get inspired.You can always check all the new ideas , also people are giving their opinions by comments and...who knows maybe you can find your new passion here.
+                
+                <p><strong>Also if it is easier for you , you can always come to our office , and have discussion with some of our educated people.</strong></p>
                
             </p>
 
             <div className="about-grid">
                 <div className="about-card">
-                    <h2>Get advice</h2>
-                    <p>
+                    <h2 className='little-header'>Get advice</h2>
+                    <p className='text-after-header'>
                         If you have any different question , or different theme that we dont have in the categories , feel free to write us  , we will be happy to help.
                     </p>
 

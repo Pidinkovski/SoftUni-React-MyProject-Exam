@@ -33,7 +33,7 @@ export default function Catalog() {
                     ))}
                 </ul>
             </div>
-            <p className='catalog-last-text'>DONT FORGET if you have something that you think worked for your and makes you feel better , it will be pleasure to share with us.</p>
+            <p className='catalog-last-text font-bold   '>DONT FORGET if you have something that you think worked for your and makes you feel better , it will be pleasure to share with us.</p>
         </section>
     )
 }
