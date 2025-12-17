@@ -1,24 +1,25 @@
 .about {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 24px 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 16px;
     backdrop-filter: blur(8px);
 }
 
 .about h1 {
-  text-align: center;
-  margin-bottom: 12px;
-  font-size: 42px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
 .about-grid {
-  margin-top: 18px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
 }
+
 .about-text-header {
     font-size: larger;
     text-align: center;
@@ -30,63 +31,99 @@
     margin-bottom: 10px;
     font-size: larger;
 }
+
 .text-after-header {
     text-align: center;
 }
 
 .about-card {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .about-form {
-  display: grid;
-  gap: 10px;
-  margin-top: 10px;
+    display: grid;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .about-form input,
 .about-form select,
 .about-form textarea {
-  width: 100%;
-  margin-top: 6px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
 }
+
 .about-form input:focus,
 .about-form select:focus,
 .about-form textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 4px rgba(48,212,174,0.25);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(48, 212, 174, 0.25);
 }
 
 .about-form button {
-  padding: 10px 12px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .map {
-  height: 320px;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.10);
+    height: 320px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.10);
 }
 
 .map iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 @media (min-width: 900px) {
-  .about-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.text-for-logged {
+    text-align: center;
+    justify-content: center;
+}
+
+.about-locked {
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding: 12px;
+}
+
+.about-locked-text {
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.5;
+    max-width: 320px;
+}
+
+.about-locked-btn {
+    color: #ff0303;
+    font-weight: 700;
+    padding: 10px 14px;
+    border-radius: 12px;
+}
+
+.about-locked-btn:hover {
+    filter: brightness(0.98);
 }
