@@ -13,6 +13,10 @@ export default function Login() {
     const { onLoginHandler } = useContext(UserContext)
 
     const loginActionClick =  async({email , password}) => {
+        
+        email = email.trim()
+        password = password.trim()
+
         if(!email || !password){
             toast.error('All fields are required')
             return

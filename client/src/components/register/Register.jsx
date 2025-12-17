@@ -12,6 +12,10 @@ export default function Register() {
     const [isSending, setIsSending] = useState(false)
     const registerClickAction = async ({ email, password, rePass }) => {
 
+        email = email.trim();
+        password = password.trim();
+        rePass = rePass.trim();
+
         if (!email || !password || !rePass) {
             toast.error('All fields are required', {
                 autoClose : 1500
