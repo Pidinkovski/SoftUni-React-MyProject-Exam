@@ -56,11 +56,11 @@ const initialState = {
     isCreating: false,
     IsLoading: false,
 }
-export default function CreateComment({ ideaId }) {
+export default function CreateComment({ ideaId ,ideaOwner }) {
 
     const [items, dispatch] = useReducer(reducer, initialState)
 
-    const { user } = useContext(UserContext)
+    const { user , isAuthenticated} = useContext(UserContext)
     const navigate = useNavigate()
     const { request, isPending } = useRequest()
     const seachParm = encodeURIComponent(`ideaId="${ideaId}"`)
@@ -211,6 +211,7 @@ export default function CreateComment({ ideaId }) {
                         disabled:cursor-not-allowed"
                 >→</button>
             </div>
+            {isAuthenticated && user._id !== ideaOwner &&
             <form className="create-comment-form" action={formAction}>
                 <textarea
                     className="comment-textarea"
@@ -225,6 +226,7 @@ export default function CreateComment({ ideaId }) {
                     {items.isCreating ? "Creating" : "Create comment"}
                 </button>
             </form>
+            }
         </section>
     );
 }

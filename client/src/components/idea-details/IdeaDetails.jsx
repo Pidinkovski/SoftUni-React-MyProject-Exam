@@ -24,7 +24,7 @@ export default function IdeaDetails() {
     const navigate = useNavigate()
 
     const { currentData ,isLoading } = useFetchOnMount(`${BASE_URL}/data/ideas/${ideaId}?load=${searchPart}`, { author: {}, likes: [] });
-
+    
     if(isLoading) {
         return <Loading />
     }
@@ -94,7 +94,7 @@ export default function IdeaDetails() {
                     }
                 </footer>
 
-                    <CreateComment ideaId = {ideaId}/>
+                    <CreateComment ideaId = {ideaId} ideaOwner = {currentData._ownerId}/>
 
             </div>
         </section>
